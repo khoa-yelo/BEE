@@ -1,86 +1,48 @@
-# 🧬 BioInfo101: Introduction to Bioinformatics
+# 🧬 Bioinformatics 101
 
-Welcome to **BioInfo101**, an introductory course on bioinformatics. This course covers essential tools, techniques, and concepts for analyzing biological data using computational methods.
+Welcome to **Bioinformatics 101** - a course for every modern biologists
 
 ---
 
 ## 📚 Course Menu
 
-- [Course Overview](#course-overview)
-- [Syllabus](#syllabus)
-- [Setup & Tools](#setup--tools)
-- [Lecture Notes](#lecture-notes)
-- [Assignments](#assignments)
-- [Projects](#projects)
-- [Resources](#resources)
-- [How to Contribute](#how-to-contribute)
+- [Course Overview](#📖-course-overview)
+- [Syllabus](#🗂️-syllabus)
+- [Resources](#📚-resources)
 
 ---
 
 ## 📖 Course Overview
 
-BioInfo101 introduces students to:
-- DNA/RNA/protein sequence formats
-- Biological databases
-- Alignment tools (e.g., BLAST)
-- Python scripting for sequence analysis
+I've always been curious about biological systems and often find myself asking questions that requires looking at things from a systems or population-level perspective, as I want to understand how things fit into the bigger picture.
+
+During my PhD, I realized that research is also moving toward this direction. More and more, researchers are taking systematic approaches to answer complex biological questions. I believe this shift is largely driven by advances in high-throughput technologies, computational methods, and scalable infrastructure.
+
+Today, the ability to analyze data on the scale of hundreds of gigabytes—or even terabytes—has become a core skill for modern biologists. Yet, I’ve rarely seen courses designed to help biologists build these skills from the ground up. Many people get discouraged early, especially without the right support or guidance. That’s the motivation behind this course.
+
+So let’s roll up our sleeves, dive into large and messy datasets, and uncover new biology together.
+
+Prerequisite
+- Basic Programming (Python and/or R, bash)
+- General knowledge of biology and genomics
+
 
 ---
 
 ## 🗂️ Syllabus
 
-| Week | Topic                                  |
-|------|----------------------------------------|
-| 1    | Introduction to Bioinformatics         |
-| 2    | Biological Sequences & File Formats    |
-| 3    | Sequence Alignment Basics              |
-| 4    | BLAST and Database Searching           |
-| 5    | Python for Bioinformatics              |
-| 6    | Multiple Sequence Alignment (MSA)      |
-| 7    | Phylogenetics and Tree Building        |
-| 8    | Final Project & Presentations          |
+| Lecture | Topic                                      | Material |
+|------|---------------------|-----------------------------------------------------------|
+| 1    | Overview: why takes this course + setup       | [Overview.md](Overview.md) |
+| 2    | Environment: mamba, container, vscode, jupyter| [Environment.md](Environment.md) |
+| 3    | Data: h5py, sql, cloud storage                | [Data.md](Data.md) |
+| 4    | Code - git, nextflow                          | [Code.md](Code.md) |
+| 5    | Project 1: Genomics                           | [Project1.md](Project1.md) |
+| 6    | Project 2: Machine Learning                   | [Project2.md](Project2.md) |
+
 
 ---
 
-## 🛠 Setup & Tools
-
-Make sure you have the following installed:
-- [Python 3.8+](https://www.python.org/)
-- [Biopython](https://biopython.org/)
-- [Jupyter Notebook](https://jupyter.org/)
-- Git & GitHub
-
-> See [setup.md](setup.md) for detailed instructions.
-
----
-
-## 📝 Lecture Notes
-
-| Week | Topic | Link |
-|------|-------|------|
-| 1 | Introduction to Bioinformatics | [week01.md](lectures/week01.md) |
-| 2 | Biological Sequences | [week02.md](lectures/week02.md) |
-| 3 | Sequence Alignment | [week03.md](lectures/week03.md) |
-| 4 | BLAST & Databases | [week04.md](lectures/week04.md) |
-| ... | ... | ... |
-
----
-
-## 🧪 Assignments
-
-| # | Title | Link |
-|---|-------|------|
-| 1 | FASTA parsing and GC content | [assignment01.md](assignments/assignment01.md) |
-| 2 | Pairwise alignment | [assignment02.md](assignments/assignment02.md) |
-| 3 | BLAST analysis | [assignment03.md](assignments/assignment03.md) |
-
----
-
-## 📁 Projects
-
-Final and capstone project instructions and deliverables go here.
-
----
 
 ## 📚 Resources
 
@@ -90,8 +52,3 @@ Final and capstone project instructions and deliverables go here.
 - [EMBL-EBI Tutorials](https://www.ebi.ac.uk/training/online/)
 
 ---
-
-## 🤝 How to Contribute
-
-Found a typo or want to add a resource?  
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose changes via pull request.
