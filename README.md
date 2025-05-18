@@ -1,6 +1,6 @@
-# 🧬 Bioinformatics 101
+# 🧬 Bioinformatics Engineering for Everyone 
 
-Welcome to **Bioinformatics 101** - a course for every modern biologists
+Welcome to **Bioinformatics Engineering for Everyone**. We will learn a bunch and have fund doing it!🌼🐝🌼
 
 ---
 
