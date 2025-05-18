@@ -1,6 +1,6 @@
 # 🧬 Bioinformatics Engineering for Everyone 
 
-Welcome to **Bioinformatics Engineering for Everyone**. We will learn a bunch and have fun learning!🌼🐝🌼
+Welcome to **Bioinformatics Engineering for Everyone**. We will learn a bunch and have fun doing it!🌼🐝🌼
 
 ---
 
