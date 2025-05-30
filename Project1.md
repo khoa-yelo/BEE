@@ -8,6 +8,160 @@ In this project, you will:
 3. Cluster protein sequences to identify homologs
 4. Analyze protein families with multiple copies
 
+## 🤔 Thought Process Guide
+
+### 1. Environment Planning
+
+**Key Questions:**
+- What computational environment do we need?
+- Should we use multiple containers or one?
+- How to ensure reproducibility?
+
+**Analysis:**
+1. **Container Strategy**
+   - **Option 1: Single Container**
+     - Pros: Simpler management, guaranteed compatibility
+     - Cons: Large image size, less flexible
+   - **Option 2: Multiple Containers** ✅
+     - Pros: Modular, smaller sizes, independent updates
+     - Cons: Need to manage interactions
+     - *We choose this because each tool (Flye, Bakta, MMseqs2) has its own dependencies*
+
+2. **Resource Requirements**
+   ```yaml
+   Minimum Requirements:
+   - CPU: 8 cores
+   - RAM: 32GB
+   - Storage: 100GB
+   - GPU: Not required
+   ```
+
+3. **Environment Setup**
+   ```bash
+   # Development environment
+   ├── conda environment (development)
+   │   ├── nextflow
+   │   ├── python=3.9
+   │   └── R=4.1
+   
+   # Production containers
+   ├── flye:2.9.2
+   ├── bakta:1.8.1
+   └── mmseqs2:14.7e284
+   ```
+
+### 2. Data Management
+
+**Key Questions:**
+- How should we organize different data types?
+- What formats need conversion?
+- How to handle intermediate files?
+
+**Analysis:**
+1. **Data Organization**
+   ```bash
+   data/
+   ├── raw/                 # Never modify these
+   │   └── reads/
+   │       ├── sample1.fastq.gz
+   │       └── sample2.fastq.gz
+   ├── interim/            # Intermediate processing
+   │   ├── assembly/
+   │   └── annotation/
+   ├── processed/          # Final results
+   │   ├── genomes/
+   │   ├── proteins/
+   │   └── clusters/
+   └── reference/          # Reference databases
+       └── bakta_db/
+   ```
+
+2. **Data Formats & Conversions**
+   ```mermaid
+   graph LR
+   A[FASTQ] --> B[FASTA Assembly]
+   B --> C[GFF3 Annotation]
+   B --> D[FAA Proteins]
+   D --> E[MMseqs2 DB]
+   E --> F[TSV Clusters]
+   ```
+
+3. **Storage Considerations**
+   - Raw reads: ~2-5GB per sample
+   - Assembled genome: ~5-10MB
+   - Annotation files: ~20-50MB
+   - Keep intermediate files? Decision points:
+     ```bash
+     # Critical points to save
+     - Raw reads (input)
+     - Assembled genome (major milestone)
+     - Final annotation (research value)
+     - Cluster results (analysis target)
+     
+     # Optional to keep
+     - Assembly graphs
+     - Intermediate indices
+     - Temporary MMseqs2 databases
+     ```
+
+### 3. Code Structure
+
+**Key Questions:**
+- Why use Nextflow over direct SLURM?
+- How to structure the repository?
+- What testing strategy to use?
+
+**Analysis:**
+1. **Pipeline Choice**
+   ```yaml
+   Nextflow Advantages:
+   - Built-in resume functionality
+   - Container integration
+   - Cross-platform compatibility
+   - Better dependency management
+   - Automatic logging
+   ```
+
+2. **Repository Structure**
+   ```bash
+   bacterial-genome-analysis/
+   ├── .github/
+   │   └── workflows/           # CI/CD
+   ├── bin/
+   │   └── scripts/            # Utility scripts
+   ├── conf/
+   │   ├── base.config        # Base configuration
+   │   ├── test.config        # Testing profile
+   │   └── slurm.config       # SLURM profile
+   ├── lib/
+   │   └── functions.nf       # Custom functions
+   ├── modules/
+   │   ├── assembly.nf        # Assembly module
+   │   ├── annotation.nf      # Annotation module
+   │   └── clustering.nf      # Clustering module
+   ├── test/
+   │   ├── data/             # Test datasets
+   │   └── test_main.nf      # Test workflows
+   ├── main.nf               # Main pipeline
+   ├── nextflow.config       # Pipeline configuration
+   └── README.md             # Documentation
+   ```
+
+3. **Version Control Strategy**
+   ```bash
+   # Branch Structure
+   main           # Stable release
+   ├── develop    # Development
+   ├── feature/*  # New features
+   └── fix/*      # Bug fixes
+
+   # Git Setup
+   git init
+   git remote add origin https://github.com/username/bacterial-genome-analysis
+   git branch develop
+   git checkout develop
+   ```
+
 ## 📋 Learning Objectives
 - Master long-read genome assembly using Flye
 - Understand bacterial genome annotation with Bakta
@@ -391,3 +545,47 @@ ggsave(opt$output, p, width=10, height=6)
 4. Analysis depth (20%)
 
 Good luck with your project! Remember to commit your changes regularly and document your progress. 
+
+## 📝 Getting Started
+
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/username/bacterial-genome-analysis
+   cd bacterial-genome-analysis
+   ```
+
+2. **Setup Development Environment**
+   ```bash
+   # Create conda environment
+   conda create -n genome_analysis python=3.9 r-base=4.1
+   conda activate genome_analysis
+   
+   # Install Nextflow
+   conda install -c bioconda nextflow
+   
+   # Install development tools
+   pip install pytest black flake8
+   ```
+
+3. **Pull Containers**
+   ```bash
+   # Pull required containers
+   docker pull nanozoo/flye:2.9.2
+   docker pull oschwengers/bakta:1.8.1
+   docker pull soedinglab/mmseqs2:14.7e284
+   ```
+
+4. **Download Test Data**
+   ```bash
+   # Create data directories
+   mkdir -p data/{raw,interim,processed,reference}
+   
+   # Download test dataset
+   wget -P data/raw/reads/ https://example.com/test_reads.fastq.gz
+   
+   # Download Bakta database
+   wget -P data/reference/ https://example.com/bakta_db.tar.gz
+   tar -xzf data/reference/bakta_db.tar.gz -C data/reference/
+   ```
+
+[Rest of the document remains unchanged...] 
